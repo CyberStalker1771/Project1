@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+    <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
+
+
+
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+
+    <a href="{{ url_for('edit', id=post['id']) }}">
+
+            <span class="badge badge-warning">Edit</span>
+
+    </a>
+
+    <p>{{ post['content'] }}</p>
+
+
+
+    <hr>
+
+    <h3>Comments</h3>
+
+
+
+    <a href="{{ url_for('create_comment', post_id=post['id']) }}">
+
+            <span class="badge">Add Comment</span>
+
+    </a>
+
+
+
+     {% for comment in comments %}
+
+          <p>{{ comment.content }}</p><span class="badge badge-primary">{{ comment['created'] }}</span>
+
+    {% endfor %}
+
+
+
+
+
+{% endblock %}
